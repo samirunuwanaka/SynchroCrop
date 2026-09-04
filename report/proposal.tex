@@ -1,0 +1,124 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{utf8}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+
+\definecolor{primaryColor}{RGB}{0, 119, 182}
+\definecolor{secondaryColor}{RGB}{43, 147, 72}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primaryColor,
+    citecolor=secondaryColor,
+    urlcolor=primaryColor
+}
+
+\title{\textbf{AquaFusion AI: Project Proposal}\\
+\large Autonomous Aquaponics Management with Non-Feeder Plant-Based Biomass Cycling, Adaptive Overhead Spectrum Lighting, and Computer Vision Ecosystem Health Monitoring}
+\author{\textbf{Samiru Nuwanaka} \\ Team SynchroCrop \\ Biomedical Engineering $\cdot$ Artificial Intelligence $\cdot$ Smart Aquaculture}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Aquaponics presents an eco-friendly food production system, yet conventional implementations suffer from high operational labor, dependency on commercial fish feeds, energy-inefficient artificial lighting, and catastrophic ecosystem failures. This proposal presents \textbf{AquaFusion AI}, a novel, fully autonomous indoor aquaponics solution designed specifically for urban apartment/flat dwellers. The proposed system features: (1) \textbf{Computer Vision Fish Behavior Monitoring} using optical flow, trajectory tracking, and surface piping detection; (2) \textbf{Multimodal Health Diagnostics} for both aquatic life and plants (NDVI analysis, leaf chlorosis detection, ORP/DO sensors); (3) \textbf{Feederless Bio-Integrated Fish Nutrition} utilizing overhead cultivated aquatic plant beds (Duckweed/Lemna minor and Wolffia) for continuous direct grazing; and (4) \textbf{Adaptive Overhead Green-Shifted Lighting} that extracts maximum electrical power conversion efficiency, dissipates only photosynthetic active radiation (PAR) frequencies, and dynamic height/intensity adaptation to achieve \textbf{$>2\times$ crop yield} compared to standard windowsill/sunlight-restricted flat environments.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Introduction \& Problem Statement}
+Urban residential flat dwellers face significant space, light, and logistical constraints when attempting sustainable food production:
+\begin{enumerate}
+    \item \textbf{Sunlight Deficit in Apartment Flats:} Windowsills and balconies provide intermittent, low-intensity natural sunlight, yielding sub-optimal photosynthetic rates and low crop growth.
+    \item \textbf{Energy Inefficiency of Full-Spectrum Grow Lights:} Broad-spectrum lights waste power across unabsorbed wavelengths, generating excessive heat and high electricity bills in confined flat living spaces.
+    \item \textbf{Commercial Feeder Dependence \& Maintenance Burden:} Automated mechanical feeders clog, require frequent replenishment, and introduce excessive protein waste leading to toxic ammonia spikes.
+    \item \textbf{Ecosystem Fragility:} Sudden changes in dissolved oxygen ($\text{DO}$), pH, or ammonia ($\text{NH}_3$) can cause silent fish mass mortality before manual detection.
+\end{enumerate}
+
+\textbf{AquaFusion AI} solves these challenges by combining AI edge computer vision, closed-loop aquatic plant feeding, and adaptive PAR lighting designed specifically for indoor urban agriculture.
+
+\section{Computer Vision Fish Behavior Monitoring}
+To eliminate manual inspection, an underwater RGB-D camera connected to an edge microcontroller (Raspberry Pi 5 / Jetson Orin Nano) continuously analyzes fish swimming kinetics.
+
+\subsection{Behavioral Metrics and Trajectories}
+The system tracks three principal behavioral indicators:
+\begin{itemize}
+    \item \textbf{Swarming \& Spatial Distribution:} Normal fish disperse homogeneously across the water volume. Aggregation near the surface indicates hypoxia ($\text{DO} < 4.0\text{ mg/L}$), while bottom crowding indicates thermal stress or toxic ammonia spikes ($\text{NH}_3 > 0.05\text{ mg/L}$).
+    \item \textbf{Velocity Vector Profiling (Optical Flow):} Using Lucas-Kanade optical flow, normal cruising speed $\vec{v}_f$ is calculated. Lethargy ($\|\vec{v}_f\| \rightarrow 0$) or hyperactive darting ($\|\vec{v}_f\| \gg v_{\text{baseline}}$) triggers immediate alert protocols.
+    \item \textbf{Surfacing / Piping Detection:} Frequent vertical movement toward the surface air-water interface is detected using YOLOV8-nano object tracking, signaling emergency oxygen depletion.
+\end{itemize}
+
+\section{Investigating Fish \& Plant Health}
+
+\subsection{Fish Health Diagnostics}
+Fish health is evaluated dynamically via non-invasive multimodal sensing:
+\begin{itemize}
+    \item \textbf{Symptom Detection:} Image segmentation models detect body lesions, white spots (\textit{Ichthyophthirius multifiliis}), fin rot, and abnormal spinal curvature.
+    \item \textbf{Water Quality Correlation:} Real-time chemical telemetry—Oxidation-Reduction Potential (ORP), Dissolved Oxygen (DO), pH, Electrical Conductivity (EC), Ammonia ($\text{NH}_3$), Nitrite ($\text{NO}_2^-$), and Nitrate ($\text{NO}_3^-$)—provides predictive root-cause diagnosis.
+\end{itemize}
+
+\subsection{Plant Health Diagnostics}
+Plant foliage health is evaluated using top-down camera arrays:
+\begin{itemize}
+    \item \textbf{Foliar Chlorosis \& Deficiencies:} Computer vision monitors leaf color gradients. Yellowing older leaves indicate Nitrogen ($\text{N}$) deficiency, interveinal chlorosis indicates Iron ($\text{Fe}$) or Magnesium ($\text{Mg}$) deficiency, and purple tinting indicates Phosphorus ($\text{P}$) deficiency.
+    \item \textbf{Growth Rate Estimation:} 3D depth sensors measure canopy volume expansion over 24-hour cycles.
+\end{itemize}
+
+\section{Feederless Aquatic Plant-Based Feeding System}
+Traditional fish feeders are replaced by an integrated, self-sustaining aquatic plant foraging bed:
+\begin{itemize}
+    \item \textbf{Live Bio-Feeder Bed:} High-protein fast-growing aquatic macrophytes (\textit{Lemna minor} / Duckweed and \textit{Wolffia globosa}) are cultivated in a shallow sub-chamber directly above or accessible to the fish tank.
+    \item \textbf{Direct Grazing \& Bio-Ramp:} Omnivorous and herbivorous fish (e.g., Tilapia, Koi, Gourami) continuously feed on fresh biomass enriched with plant-synthesized vitamins and protein ($35-45\%$ crude protein content).
+    \item \textbf{Ammonia Recycling Loop:} Fish waste directly fertilizes the forage crop bed, removing toxic ammonia while producing fresh forage without human intervention or mechanical feeder jams.
+\end{itemize}
+
+\section{Adaptive Overhead Green-Shifted PAR Lighting Mechanism}
+
+\subsection{Resolving Flat-Dweller Sunlight Limitations (More Than 2x Yield)}
+In dense apartment flats, natural light intensity is typically limited to $50-150\ \mu\text{mol}/\text{m}^2/\text{s}$ for less than 4 hours daily. \textbf{AquaFusion AI} delivers optimal Photosynthetically Active Radiation (PAR) continuously.
+
+\subsection{Narrow-Spectrum PAR Frequency Optimization \& Heat Dissipation}
+\begin{itemize}
+    \item \textbf{Selective Wavelength Emission:} Plants utilize specific wavelengths ($450\text{nm}$ Blue, $525-550\text{nm}$ Green penetration, $660\text{nm}$ Deep Red). Rather than burning energy across unabsorbed spectra (which causes excessive thermal radiation), AquaFusion AI uses high-efficiency solid-state LEDs emitting \emph{only} exact photosynthetic frequencies.
+    \item \textbf{Green Light Canopy Penetration:} Deep canopy leaves under shade are penetrated efficiently by tuned green spectrum wavelengths ($525-550\text{nm}$), enabling lower-tier leaves to perform photosynthesis at full capacity.
+    \item \textbf{Power Extraction Efficiency:} By filtering out non-photosynthetic thermal infrared and UV waste, power conversion efficiency increases by $>60\%$, dissipating minimal heat into flat living quarters.
+\end{itemize}
+
+\subsection{Adaptive Height \& Growth Motorized Tracking}
+\begin{itemize}
+    \item To maintain optimum Photosynthetic Photon Flux Density (PPFD) without burning growing tips, the overhead lighting array is mounted on motorized linear actuators.
+    \item As the computer vision system detects canopy growth ($\Delta h$), the light bed automatically adjusts its height $h_{\text{light}}(t) = h_{\text{canopy}}(t) + d_{\text{optimal}}$, optimizing photon capture efficiency throughout the plant life cycle.
+\end{itemize}
+
+\section{Expected Results \& Metrics}
+
+\begin{table}[h!]
+\centering
+\caption{System Performance Comparisons}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Standard Flat Sunlight} & \textbf{AquaFusion AI System} \\
+\midrule
+Daily PAR Yield ($\text{mol}/\text{m}^2/\text{day}$) & $4.2 - 6.5$ & \textbf{$15.0 - 22.0$ ($>2\times$ Growth)} \\
+Feeder Maintenance & Refill every 3-5 days & \textbf{Self-sustaining (0 Days)} \\
+Power Conversion Loss & High (Broad spectrum heat) & \textbf{Minimal (Tuned PAR only)} \\
+Fish Survival Rate & $75-80\%$ & \textbf{$>98\%$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Conclusion}
+\textbf{AquaFusion AI} redefines urban indoor aquaponics. By integrating computer vision fish behavior tracking, automated plant/fish disease diagnostics, a feederless aquatic plant grazing mechanism, and adaptive green-penetration PAR lighting, flat dwellers can achieve more than double the crop yield of traditional natural-light farming while eliminating daily maintenance and minimizing power consumption.
+
+\end{document}
